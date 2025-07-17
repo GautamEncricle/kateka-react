@@ -1,0 +1,133 @@
+{
+  "banner": {
+    "title": "Safari & Wellness Experience",
+    "image": "./src/assets/images/banner-img.webp",
+    "video": "https://www.youtube.com/watch?v=QwYhzm70-rg"
+  },
+  "about": {
+    "title": "About Ipsum Dolor Sit Amet",
+    "content": "We are passionate about introducing guests from all over the world to Kateka, our five-star home. We would love for you to come and discover a wilderness meets wellness experience where our love for hospitality is evident. Whether it's the wildlife you encounter, the people you meet during your stay, the facilities on offer or simply all of it, our hope for every guest is to leave feeling like members of the family and not wanting to leave!"
+  },
+  "safari": {
+    "title": "Safari",
+    "content": "Lorem ipsum dolor sit amet, consecteturd do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation Lorem ipsum dolor sit amet, consecteturd do eiusmod tempor incididunt.",
+    "image": "./src/assets/images/safari-img.webp"
+  },
+  "wellness": {
+    "title": "Wellness",
+    "content": "Lorem ipsum dolor sit amet, consecteturd do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation Lorem ipsum dolor sit amet, consecteturd do eiusmod tempor incididunt veniam.",
+    "images": [
+      "./src/assets/images/wellness-img1.webp",
+      "./src/assets/images/wellness-img2.webp"
+    ]
+  },
+  "conservation": {
+    "title": "Conservation and sustainability sit amet",
+    "content": "Lorem ipsum dolor sit amet, consecteturd do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation Lorem ipsum dolor sit amet, consecteturd do eiusmod tempor incididunt.",
+    "video": "./src/assets/images/KatekaSafari-Wellness-Experience.mp4"
+  },
+  "testimonials": [
+    {
+      "message": "An unforgettable safari experience. The guides were amazing!",
+      "name": "Alice",
+      "country": "UK"
+    },
+    {
+      "message": "We saw all the Big Five and enjoyed luxurious accommodations.",
+      "name": "Raj",
+      "country": "India"
+    },
+    {
+      "message": "I felt completely immersed in nature with top-class service.",
+      "name": "Maya",
+      "country": "USA"
+    }
+  ],
+  "experience": {
+    "title": "experience Kateka",
+    "images": [
+      "./src/assets/images/card-img1.webp",
+      "./src/assets/images/KatekaSafari-Wellness-Experience.mp4",
+      "./src/assets/images/card-img3.webp"
+    ],
+    "videoOverlay": "./src/assets/images/link-arrow.svg",
+    "buttonText": "EXPLORE"
+  },
+  "offers": [
+    {
+      "title": "STAY LONGER FOR LESS",
+      "description": "Lorem ipsum dolor sit amet consectetur. Ullamcorper quam pellentesque porttitor nisi quis bibendum tristique consequat orci. Ut suspendisse enim egestas ac.",
+      "link": "#"
+    },
+    {
+      "title": "15% OFF ONLINE BOOKINGS",
+      "description": "Lorem ipsum dolor sit amet consectetur. Ullamcorper quam pellentesque porttitor nisi quis bibendum tristique consequat orci. Ut suspendisse enim egestas ac.",
+      "link": "#"
+    },
+    {
+      "title": "FAMILY FUN",
+      "description": "Lorem ipsum dolor sit amet consectetur. Ullamcorper quam pellentesque porttitor nisi quis bibendum tristique consequat orci. Ut suspendisse enim egestas ac.",
+      "link": "#"
+    }
+  ],
+  "navigation": [
+    { "label": "Stay", "link": "#" },
+    { "label": "Safari", "link": "#" },
+    { "label": "Wellness", "link": "#" },
+    { "label": "Experiences", "link": "#" },
+    { "label": "Offers", "link": "#" }
+  ],
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Lorem ipsum dolor sit amet",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam...",
+      "image": "./src/assets/images/blog-img.webp"
+    },
+    {
+      "id": 2,
+      "title": "Why Safari & Wellness Matter",
+      "description": "Discover how nature and wellness combine to create a healing experience at Kateka.",
+      "image": "./src/assets/images/blog2.webp"
+    }
+  ],
+  "faq": {
+    "questions": [
+      {
+        "question": "What is the check-in time?",
+        "answer": "Check-in is from 3 PM onwards."
+      },
+      {
+        "question": "Is breakfast included?",
+        "answer": "Yes, breakfast is included with your stay."
+      },
+      {
+        "question": "Do you offer airport transfers?",
+        "answer": "Yes, airport transfers can be arranged upon request."
+      }
+    ]
+  },
+  "footer": {
+    "newsletter": {
+      "title": "join our newsletter",
+      "content": "Lorem ipsum dolor sit amet consectetur."
+    },
+    "links": {
+      "top": ["HOME", "STAY", "SAFARI", "WELLNESS", "EXPERIENCES", "OFFERS"],
+      "bottom": [
+        "ABOUT US",
+        "DINING",
+        "CONSERVATION",
+        "FACILITIES",
+        "LOCATION",
+        "BLOG",
+        "RATES",
+        "GALLERY"
+      ],
+      "social": ["Facebook", "Instagram"]
+    },
+    "copyright": "© 2025 Kateka. All rights reserved.",
+    "terms": "Terms",
+    "privacy": "Privacy"
+  }
+}
