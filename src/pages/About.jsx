@@ -9,11 +9,11 @@ const About = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/about")
+      .get(BACKEND_URL+"/about")
       .then((res) => setAbout(res.data))
       .catch(console.error);
     axios
-      .get("http://localhost:3000/team")
+      .get(BACKEND_URL+"/team")
       .then((res) => setTeam(res.data))
       .catch(console.error);
   }, []);

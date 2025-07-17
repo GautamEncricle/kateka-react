@@ -15,17 +15,17 @@ export default function Index() {
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
-    axios.get(import.meta.env.BACKEND_SERVER+"/banner").then((res) => setBanner(res.data));
+    axios.get(BACKEND_URL+"/banner").then((res) => setBanner(res.data));
     axios.get(BACKEND_URL+"/about").then((res) => setAbout(res.data));
-    axios.get(BACKEND_URL+"/offers").then((res) => setOffers(res.data));
+    axios.get(BACKEND_URL+"/offers").then((res) => setOffers(Array.isArray(res.data) ? res.data : []));
     axios.get(BACKEND_URL+"/safari").then((res) => setSafari(res.data));
     axios.get(BACKEND_URL+"/wellness").then((res) => setWellness(res.data));
     axios.get(BACKEND_URL+"/experience").then((res) => setExperience(res.data));
     axios.get(BACKEND_URL+"/blogs").then((res) => setBlogs(res.data));
     axios.get(BACKEND_URL+"/conservation").then((res) => setConservation(res.data));
-    axios.get(BACKEND_URL+"/testimonials").then((res) => setTestimonials(res.data));
+    axios.get(BACKEND_URL+"/testimonials").then((res) => setTestimonials(Array.isArray(res.data) ? res.data : []));
   }, []);
-
+  console.log(BACKEND_URL);
   return (
     <main>
       {/* About Intro Section */}
