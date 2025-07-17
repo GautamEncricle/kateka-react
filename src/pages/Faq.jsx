@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+
+import BACKEND_URL from "../constants/server";
 
 const Faq = () => {
   const [faqData, setFaqData] = useState({ sections: [] });
@@ -9,7 +9,7 @@ const Faq = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/faq")
+      .get(BACKEND_URL+"/faq")
       .then((res) => setFaqData(res.data))
       .catch(() => setFaqData({ sections: [] }));
   }, []);
@@ -25,8 +25,6 @@ const Faq = () => {
 
   return (
     <>
-      <Header />
-
       <main>
         {/* Banner Section */}
         <section className="banner py-45 pb-0 pt-180 max-1023:pt-100">
@@ -168,8 +166,6 @@ const Faq = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+
+import BACKEND_URL from "../constants/server";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -10,23 +13,21 @@ const Location = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/location")
+      .get(BACKEND_URL+"/location")
       .then((res) => setLocationData(res.data))
       .catch(console.error);
     axios
-      .get("http://localhost:3000/locationTooltips")
+      .get(BACKEND_URL+"/locationTooltips")
       .then((res) => setTooltipItems(res.data))
       .catch(console.error);
     axios
-      .get("http://localhost:3000/howToGet")
+      .get(BACKEND_URL+"/howToGet")
       .then((res) => setHowToGet(res.data))
       .catch(console.error);
   }, []);
 
   return (
     <>
-      <Header />
-
       <main>
         {/* Banner Section */}
         <section className="banner py-45 pb-0 pt-180 max-1023:pt-100">
@@ -165,8 +166,6 @@ const Location = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };

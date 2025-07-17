@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import BACKEND_URL from "../constants/server";
+
 export default function Index() {
   const [banner, setBanner] = useState({});
   const [about, setAbout] = useState({});
@@ -13,15 +15,15 @@ export default function Index() {
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/banner").then((res) => setBanner(res.data));
-    axios.get("http://localhost:3000/about").then((res) => setAbout(res.data));
-    axios.get("http://localhost:3000/offers").then((res) => setOffers(res.data));
-    axios.get("http://localhost:3000/safari").then((res) => setSafari(res.data));
-    axios.get("http://localhost:3000/wellness").then((res) => setWellness(res.data));
-    axios.get("http://localhost:3000/experience").then((res) => setExperience(res.data));
-    axios.get("http://localhost:3000/blogs").then((res) => setBlogs(res.data));
-    axios.get("http://localhost:3000/conservation").then((res) => setConservation(res.data));
-    axios.get("http://localhost:3000/testimonials").then((res) => setTestimonials(res.data));
+    axios.get(import.meta.env.BACKEND_SERVER+"/banner").then((res) => setBanner(res.data));
+    axios.get(BACKEND_URL+"/about").then((res) => setAbout(res.data));
+    axios.get(BACKEND_URL+"/offers").then((res) => setOffers(res.data));
+    axios.get(BACKEND_URL+"/safari").then((res) => setSafari(res.data));
+    axios.get(BACKEND_URL+"/wellness").then((res) => setWellness(res.data));
+    axios.get(BACKEND_URL+"/experience").then((res) => setExperience(res.data));
+    axios.get(BACKEND_URL+"/blogs").then((res) => setBlogs(res.data));
+    axios.get(BACKEND_URL+"/conservation").then((res) => setConservation(res.data));
+    axios.get(BACKEND_URL+"/testimonials").then((res) => setTestimonials(res.data));
   }, []);
 
   return (

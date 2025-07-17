@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import BACKEND_URL from "../constants/server";
+
 export default function Rates() {
   const [ratesData, setRatesData] = useState({ title: "", description: "" });
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/rates")
+      .get(BACKEND_URL+"/rates")
       .then((res) => {
         setRatesData(res.data);
       })

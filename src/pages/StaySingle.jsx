@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import BACKEND_URL from "../constants/server";
+
 export default function StaySingle() {
   const [staySingleData, setStaySingleData] = useState({
     title: "",
@@ -9,7 +11,7 @@ export default function StaySingle() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/stay-single")
+      .get(BACKEND_URL+"/stay-single")
       .then((res) => {
         setStaySingleData(res.data);
       })

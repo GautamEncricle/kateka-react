@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import BACKEND_URL from "../constants/server";
 
 export default function Safari() {
   const [safariData, setSafariData] = useState({ title: "", description: "" });
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/safari")
+      .get(BACKEND_URL+"/safari")
       .then((res) => {
         setSafariData(res.data);
       })

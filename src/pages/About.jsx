@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+
+import BACKEND_URL from "../constants/server";
 
 const About = () => {
   const [about, setAbout] = useState({});
@@ -20,8 +20,6 @@ const About = () => {
 
   return (
     <>
-      <Header />
-
       <main>
         {/* Banner Section */}
         <section className="banner py-45 pb-0 pt-180 max-1023:pt-100">
@@ -133,8 +131,6 @@ const About = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };

@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+
+import BACKEND_URL from "../constants/server";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/blogs")
+      .get(BACKEND_URL+"/blogs")
       .then((res) => setBlogs(res.data))
       .catch(console.error);
   }, []);
 
   return (
     <>
-      <Header />
-
       <main>
         {/* Banner Section */}
         <section className="banner transparent-banner h-[calc(100vh_-_300px)] max-1023:h-[calc(100vh_-_400px)] py-100">
@@ -74,8 +72,6 @@ const Blog = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };

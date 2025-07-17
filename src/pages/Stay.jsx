@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import BACKEND_URL from "../constants/server";
+
 export default function Stay() {
   const [stayData, setStayData] = useState({ title: "", description: "" });
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/stay")
+      .get(BACKEND_URL+"/stay")
       .then((res) => {
         setStayData(res.data);
       })

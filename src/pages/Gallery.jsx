@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+
+import BACKEND_URL from "../constants/server";
 
 const Gallery = () => {
   const [galleryData, setGalleryData] = useState({
@@ -14,7 +14,7 @@ const Gallery = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/gallery")
+      .get(BACKEND_URL+"/gallery")
       .then((res) => setGalleryData(res.data))
       .catch(console.error);
   }, []);
@@ -26,8 +26,6 @@ const Gallery = () => {
 
   return (
     <>
-      <Header />
-
       <main>
         {/* Banner Section */}
         <section className="banner py-45 pb-0 pt-180 max-1023:pt-100">
@@ -224,8 +222,6 @@ const Gallery = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };

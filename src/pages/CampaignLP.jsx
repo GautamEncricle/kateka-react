@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+
+import BACKEND_URL from "../constants/server";
 
 const CampaignLP = () => {
   const [offers, setOffers] = useState([]);
@@ -20,8 +20,6 @@ const CampaignLP = () => {
 
   return (
     <>
-      <Header />
-
       <main>
         {/* Campaign Banner */}
         <section className="banner py-45 pb-0 pt-180 max-1023:pt-100">
@@ -144,8 +142,6 @@ const CampaignLP = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };

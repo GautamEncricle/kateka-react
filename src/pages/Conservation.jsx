@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+
+import BACKEND_URL from "../constants/server";
 
 const Conservation = () => {
   const [conservation, setConservation] = useState({});
@@ -10,23 +10,21 @@ const Conservation = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/conservation")
+      .get(BACKEND_URL+"/conservation")
       .then((res) => setConservation(res.data))
       .catch(console.error);
     axios
-      .get("http://localhost:3000/impactItems")
+      .get(BACKEND_URL+"/impactItems")
       .then((res) => setImpactItems(res.data))
       .catch(console.error);
     axios
-      .get("http://localhost:3000/projects")
+      .get(BACKEND_URL+"/projects")
       .then((res) => setProjects(res.data))
       .catch(console.error);
   }, []);
 
   return (
     <>
-      <Header />
-
       <main>
         {/* Banner Section */}
         <section className="banner py-45 pb-0 pt-180 max-1023:pt-100">
@@ -186,8 +184,6 @@ const Conservation = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };

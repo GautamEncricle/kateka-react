@@ -1,12 +1,10 @@
 import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+
+import BACKEND_URL from "../constants/server";
 
 const Contact = () => {
   return (
     <>
-      <Header />
-
       <main>
         {/* Contact Info Section */}
         <section className="contact-info py-100 mt-150">
@@ -99,8 +97,6 @@ const Contact = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };

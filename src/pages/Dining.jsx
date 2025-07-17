@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+
+import BACKEND_URL from "../constants/server";
 
 const Dining = () => {
   const [dining, setDining] = useState({});
@@ -10,15 +10,15 @@ const Dining = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/dining")
+      .get(BACKEND_URL+"/dining")
       .then((res) => setDining(res.data))
       .catch(console.error);
     axios
-      .get("http://localhost:3000/diningGallery")
+      .get(BACKEND_URL+"/diningGallery")
       .then((res) => setGalleryImages(res.data))
       .catch(console.error);
     axios
-      .get("http://localhost:3000/stayListings")
+      .get(BACKEND_URL+"/stayListings")
       .then((res) => setStayListings(res.data))
       .catch(console.error);
   }, []);
@@ -262,8 +262,6 @@ const Dining = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };
