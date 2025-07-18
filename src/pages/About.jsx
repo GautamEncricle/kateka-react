@@ -1,96 +1,116 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+"use client"
 
-import BACKEND_URL from "../constants/server";
+import { useState, useEffect } from "react"
+import axios from "axios"
 
-const About = () => {
-  const [about, setAbout] = useState({});
-  const [team, setTeam] = useState([]);
+import BACKEND_URL from "../constants/server"
+
+export default function About() {
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [activeInfo, setActiveInfo] = useState(null)
 
   useEffect(() => {
-    axios
-      .get(BACKEND_URL+"/about")
-      .then((res) => setAbout(res.data))
-      .catch(console.error);
-    axios
-      .get(BACKEND_URL+"/team")
-      .then((res) => setTeam(res.data))
-      .catch(console.error);
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${BACKEND_URL}/aboutPage`)
+        setData(response.data)
+      } catch (err) {
+        setError(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  const toggleInfo = (index) => {
+    setActiveInfo(activeInfo === index ? null : index)
+  }
+
+  if (loading) return <div>Loading...</div>
+  if (error) return <div>Error: {error.message}</div>
+  if (!data) return null
 
   return (
-    <>
-      <main>
-        {/* Banner Section */}
-        <section className="banner py-45 pb-0 pt-180 max-1023:pt-100">
-          <div className="container-fluid relative">
-            <div className="title-olive text-center pb-60 sticky top-180 max-1023:top-120">
-              <h2 className="h2">About</h2>
-            </div>
-            <div className="img relative">
-              <img
-                src="/assets/images/stay-single-banner.webp"
-                className="img-ratio rounded-10"
-                width="1280"
-                height="620"
-                alt="About Banner"
-              />
+    <main>
+      <section className="banner py-45 pb-0 pt-180 max-1023:pt-100">
+        <div className="container-fluid relative">
+          <div className="title-olive text-center pb-60 sticky top-180 max-1023:top-120">
+            <h2 className="h2">{data.banner.title}</h2>
+          </div>
+          <div className="img relative">
+            <img
+              src={data.banner.image || "/placeholder.svg"}
+              className="img-ratio rounded-10"
+              width="1280"
+              height="620"
+              alt={data.banner.alt}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="common-content py-210 max-1023:py-50">
+        <div className="container-fluid">
+          <div className="max-w-993 mx-auto">
+            <div className="title-olive">
+              <h2 className="h2">{data.commonContent.title}</h2>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* About Content */}
-        <section className="common-content py-210 max-1023:py-50">
-          <div className="container-fluid">
-            <div className="max-w-993 mx-auto">
-              <div className="title-olive">
-                <h2 className="h2">{about.title}</h2>
-                <p className="pt-25">{about.content}</p>
-              </div>
-            </div>
+      <section className="meet-team-wrapper pb-100 max-1023:pb-50">
+        <div className="container-fluid text-center">
+          <div className="text-center title-olive mb-38 last:mb-0">
+            <h2 className="h2">{data.meetTeam.title}</h2>
           </div>
-        </section>
-
-        {/* Meet the Team */}
-        <section className="meet-team-wrapper pb-100 max-1023:pb-50">
-          <div className="container-fluid text-center">
-            <div className="title-olive mb-38">
-              <h2 className="h2">Meet The Team</h2>
-            </div>
-            <div className="content max-w-530 mx-auto mb-40">
-              <p>Our amazing staff, dedicated to service excellence.</p>
-            </div>
-
-            <div className="group/section relative flex max-h-[100lvh] flex-col items-center justify-center overflow-hidden mt-38">
-              <div className="moving-teams flex w-[190%] shrink-0 flex-col justify-center lg:w-[110%]">
-                <div className="moving-teams-row -mr-[100%] grid w-[300%] shrink-0 grid-cols-[repeat(3,1fr)]">
-                  <div className="grid h-fit grid-cols-[repeat(3,1fr)] lg:grid-cols-[repeat(4,1fr)] will-change-transform">
-                    {team.map((member, index) => (
+          <div className="content max-w-530 mx-auto mb-40 last:mb-0">
+            <p>{data.meetTeam.description}</p>
+          </div>
+        </div>
+        <div className="group/section relative flex max-h-[100lvh] flex-col items-center justify-center overflow-hidden mt-38">
+          <div
+            data-target="moving-portraits.scene"
+            className="moving-teams flex w-[190%] shrink-0 flex-col justify-center group-data-[active]/section:opacity-0 lg:w-[110%]"
+          >
+            {/* Replicating the two rows for the moving effect, assuming data is sufficient */}
+            {[...Array(2)].map((_, rowIndex) => (
+              <div
+                key={rowIndex}
+                data-target={`moving-portraits.row-${rowIndex % 2 === 0 ? "odd" : "even"}`}
+                className={`moving-teams-row ${rowIndex % 2 === 0 ? "-mr-[100%]" : ""} grid w-[300%] shrink-0 grid-cols-[repeat(3,1fr)]`}
+              >
+                <div className="grid h-fit grid-cols-[repeat(3,1fr)] lg:grid-cols-[repeat(4,1fr)] will-change-transform">
+                  {data.meetTeam.teamMembers.map((member, index) => (
+                    <div
+                      key={index}
+                      className="h-fit w-full px-[2.75vw] py-[3.5vw] lg:px-[.8625vw] lg:py-[.8625vw] block"
+                    >
                       <div
-                        key={index}
-                        className="h-fit w-full px-[2.75vw] py-[3.5vw] lg:px-[.8625vw] lg:py-[.8625vw] block"
+                        data-target="moving-portraits.portrait"
+                        className="team relative aspect-[352/200] size-full rounded-10 overflow-hidden"
                       >
-                        <div className="team relative aspect-[352/200] size-full rounded-10 overflow-hidden">
-                          <img
-                            src={member.image}
-                            className="rounded-16 aspect-[352/200] size-full object-cover object-center"
-                            width="430"
-                            height="240"
-                            alt={member.name}
-                          />
-                          <button
-                            type="button"
-                            className="info-icon absolute top-18 left-18"
-                          >
-                            <img
-                              src="/assets/images/info.svg"
-                              width="24"
-                              height="24"
-                              alt="Info"
-                            />
-                          </button>
-                          <div className="info-content hidden flex-wrap gap-10 bg-gray rounded-10 py-8 px-10 w-fit absolute top-18 left-18">
-                            <div className="close">
+                        <img
+                          src={member.image || "/placeholder.svg"}
+                          className="rounded-16 aspect-[352/200] size-full object-cover object-center group-data-[active]/active-scene:rounded-24"
+                          width="430"
+                          height="240"
+                          alt={member.alt}
+                        />
+                        <button
+                          type="button"
+                          className="info-icon absolute top-18 left-18"
+                          onClick={() => toggleInfo(index)}
+                        >
+                          <img src="./src/assets/images/info.svg" width="24" height="24" alt="Info" />
+                        </button>
+                        {activeInfo === index && (
+                          <div className="info-content flex-wrap gap-10 bg-gray rounded-10 py-8 px-10 w-fit absolute top-18 left-18">
+                            <div className="close" onClick={() => toggleInfo(null)}>
                               <svg
                                 width="9"
                                 height="9"
@@ -116,23 +136,19 @@ const About = () => {
                               <h6 className="font-extralight !text-body-4 !leading-18 inline-block !font-body">
                                 {member.name}
                               </h6>
-                              <span className="uppercase font-normal text-body-5 tracking-05">
-                                {member.jobTitle}
-                              </span>
+                              <span className="uppercase font-normal text-body-5 tracking-05">{member.jobTitle}</span>
                             </div>
                           </div>
-                        </div>
+                        )}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
+            ))}
           </div>
-        </section>
-      </main>
-    </>
-  );
-};
-
-export default About;
+        </div>
+      </section>
+    </main>
+  )
+}

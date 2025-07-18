@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import menuLogo from '../assets/images/menu-logo.svg';
 import linkArrow from '../assets/images/link-arrow.svg';
 import mainLogo from '../assets/images/logo.svg';
@@ -9,6 +10,14 @@ import menuImg3 from '../assets/images/menu-img3.webp';
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const toggleNav = () => setIsNavOpen(!isNavOpen);
+
+  const navItems = [
+    { name: "Stay", path: "/stay" },
+    { name: "Safari", path: "/safari" },
+    { name: "Wellness", path: "/wellness" },
+    { name: "Experiences", path: "/experiences" },
+    { name: "Offers", path: "/offers" }, // Make sure this matches your route
+  ];
 
   return (
     <header className="header">
@@ -31,32 +40,49 @@ const Header = () => {
                 )}
               </div>
               <div className="sticky-logo hidden">
-                <a href="#"><img src={menuLogo} alt="Kateka" width="194" height="21" /></a>
-              </div>
-              <div className="menu-logo hidden">
-                <a href="#"><img src={menuLogo} alt="Kateka" width="194" height="21" /></a>
+                <Link to="/"><img src={menuLogo} alt="Kateka" width="194" height="21" /></Link>
               </div>
             </div>
-            <div className="header-top-right flex flex-wrap items-center gap-x-95 max-1199:gap-x-40 max-1023:hidden">
-              <div className="top-navbar">
-                <ul className="flex flex-wrap gap-x-32">
-                  {["Stay", "Safari", "Wellness", "Experiences", "Offers"].map((item) => (
-                    <li key={item}><a href="#">{item}</a></li>
-                  ))}
-                </ul>
-              </div>
-              <div className="flex items-center gap-x-28">
-                <a href="#" className="btn btn-link"><span><img src={linkArrow} alt="Arrow" width="16" height="14" /></span> ENQUIRE NOW</a>
-                <a href="#" className="btn btn-olive">Book Now</a>
-              </div>
-            </div>
+              <div className="header-top-right flex flex-wrap items-center gap-x-95 max-1199:gap-x-40 max-1023:hidden">
+            <div className="top-navbar">
+              <ul className="flex flex-wrap gap-x-32">
+                {navItems.map((item) => (
+                  <li key={item.name}>
+                    <Link 
+                      to={item.path} 
+                      className="text-black hover:text-olive transition-colors"
+                      onClick={() => setIsNavOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+        </div>
+        <div className="flex items-center gap-x-28">
+          <Link 
+            to="/contact" 
+            className="btn btn-link"
+            onClick={() => setIsNavOpen(false)}
+          >
+            <span><img src={linkArrow} alt="Arrow" width="16" height="14" /></span> ENQUIRE NOW
+          </Link>
+          <Link 
+            to="/booking" 
+            className="btn btn-olive"
+            onClick={() => setIsNavOpen(false)}
+          >
+            Book Now
+          </Link>
+        </div>
+      </div>
             <div className="hidden max-1023:block mobile-logo">
               <div className="logo">
-                <a href="#"><img src={mainLogo} alt="Kateka" width="150" height="100" /></a>
+                <Link to="/"><img src={mainLogo} alt="Kateka" width="150" height="100" /></Link>
               </div>
             </div>
             <div className="hidden max-1023:block booknowbtn">
-              <a href="#" className="btn btn-olive">Book Now</a>
+              <Link to="/booking" className="btn btn-olive">Book Now</Link>
             </div>
           </div>
         </div>
@@ -67,8 +93,16 @@ const Header = () => {
             <div className="menu-wrapper-content flex items-center justify-center w-full px-110">
               <div className="w-full lg:w-4/12">
                 <ul className="grid gap-y-20">
-                  {["Stay", "Safari", "Wellness", "Experiences", "Offers"].map((item) => (
-                    <li key={item}><a href="#">{item}</a></li>
+                  {navItems.map((item) => (
+                    <li key={item.name}>
+                      <Link 
+                        to={item.path} 
+                        className="text-4xl font-light hover:text-olive transition-colors"
+                        onClick={toggleNav}
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
                   ))}
                 </ul>
               </div>
